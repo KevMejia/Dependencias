@@ -1,0 +1,163 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Dependencias";
+}
+
+<div id="container">
+    <input id="tab-1" type="radio" name="tab-group" checked="checked" />
+    <label for="tab-1">Dependencias Generales</label>
+    <input id="tab-2" type="radio" name="tab-group" />
+    <label for="tab-2">Dependencias Auxiliares</label>
+    <input id="tab-3" type="radio" name="tab-group" />
+    <label for="tab-3">Dependencias Municipio</label>
+
+    <div id="content">
+        <!--Dependencias Generales-->
+        <div id="content-1">
+            @Html.ActionLink("Crear nueva Dependencia General", "NuevoDepGral", null, new { @class="btn btn-success" })
+            <table class="table">
+                <tr>
+                    <th>Clave dependencia</th>
+                    <th>Año de Operación</th>
+                    <th>Clave Dependencia General</th>
+                    <th>Nombre de la Dependencia General</th>
+                    <th>Usuario que captura</th>
+                    <th>Fecha de Captura</th>
+                    <th>Status Dependencias Generales</th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in ViewData["DepGral"] as List<Dependencias.Models.DEPENDENCIASGENERALES>)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ANIOOPERACION)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAGENERAL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOMBREDEPENDENCIAGENERAL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.USUARIOCAPTURA)
+                        </td>
+                        <td>
+                            @{ string fecha = item.FECHACAPTURA.ToShortDateString(); }
+                            @Html.DisplayFor(modelItem => fecha)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.STATUSDEPENDENCIASGENERALES)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Modificar", "ModificarDepGral", new { id = item.CLAVEDEPENDENCIAGENERAL}) |
+                            @Html.ActionLink("Detalles", "DetallesDepGral", new { id = item.CLAVEDEPENDENCIAGENERAL }) |
+                            @Html.ActionLink("Eliminar", "EliminarDepGral", new { id = item.CLAVEDEPENDENCIAGENERAL })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+
+        <!--Dependencias Auxiliares-->
+        <div id="content-2">
+            @Html.ActionLink("Crear nueva Dependencia Auxiliar", "NuevoDepAux", null, new { @class = "btn btn-success" })
+            <table class="table">
+                <tr>
+                    <th>Clave Dependencia</th>
+                    <th>Año de Operación</th>
+                    <th>Clave Dependencia Auxiliar</th>
+                    <th>Nombre de la Dependencia Auxiliar</th>
+                    <th>Usuario que captura</th>
+                    <th>Fecha de Captura</th>
+                    <th>Status Dependencias Generales</th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in ViewData["DepAux"] as List<Dependencias.Models.DEPENDENCIASAUXILIARES>)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ANIOOPERACION)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAAUXILIAR)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOMBREDEPENDENCIAAUXILIAR)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.USUARIOCAPTURA)
+                        </td>
+                        <td>
+                            @{ string fecha = item.FECHACAPTURA.ToShortDateString(); }
+                            @Html.DisplayFor(modelItem => fecha)                        
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.STATUSDEPENDENCIASGENERALES)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Modificar", "ModificarDepAux", new { id = item.CLAVEDEPENDENCIAAUXILIAR }) |
+                            @Html.ActionLink("Detalles", "DetallesDepAux", new { id = item.CLAVEDEPENDENCIAAUXILIAR }) |
+                            @Html.ActionLink("Eliminar", "EliminarDepAux", new { id = item.CLAVEDEPENDENCIAAUXILIAR })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+
+        <!--Dependencias Municipio-->
+        <div id="content-3">
+           @Html.ActionLink("Crear nueva Dependencia Municipio", "NuevoDepMun", null, new { @class = "btn btn-success" })
+            <table class="table">
+                <tr>
+                    <th>Clave Dependencia</th>
+                    <th>Año de Operación</th>
+                    <th>Clave Dependencia</th>
+                    <th>Usuario que Captura</th>
+                    <th>Fecha de Captura</th>
+                    <th>Status Dependencias Generales</th>
+                    <th></th>
+                </tr>
+
+                    @foreach (var item in ViewData["DepMun"] as List<Dependencias.Models.DEPENDENCIASMUNICIPIOS>)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ANIOOPERACION)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAGENERAL)@Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAAUXILIAR)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.USUARIOCAPTURA)
+                        </td>
+                        <td>
+                            @{string fecha = item.FECHACAPTURA.ToShortDateString();}
+                            @Html.DisplayFor(modelItem => fecha)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.STATUSDEPENDENCIASGENERALES)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Modificar", "ModificarDepMun", new { id = item.CLAVEDEPENDENCIAGENERAL, id2= item.CLAVEDEPENDENCIAAUXILIAR }) |
+                            @Html.ActionLink("Detalles", "DetallesDepMun", new { id = item.CLAVEDEPENDENCIAGENERAL, id2 = item.CLAVEDEPENDENCIAAUXILIAR }) |
+                            @Html.ActionLink("Eliminar", "EliminarDepMun", new { id = item.CLAVEDEPENDENCIAGENERAL, id2 = item.CLAVEDEPENDENCIAAUXILIAR })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@model Dependencias.Models.DEPENDENCIASGENERALES
+
+@{
+    ViewBag.Title = "Eliminar Dependencia General";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>¿Estás seguro que quieres eliminar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Año de operación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANIOOPERACION)
+        </dd>
+
+        <dt>
+            Clave Dependencia General
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLAVEDEPENDENCIAGENERAL)
+        </dd>
+
+        <dt>
+            Nombre de la Dependencia General
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREDEPENDENCIAGENERAL)
+        </dd>
+
+        <dt>
+            Usuario que Captura
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIOCAPTURA)
+        </dd>
+
+        <dt>
+            Fecha de Captura
+        </dt>
+
+        <dd>
+            @{string fecha = Model.FECHACAPTURA.ToShortDateString();}
+            @Html.DisplayFor(model => fecha)        
+        </dd>
+
+        <dt>
+            Status Dependencias Generales
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUSDEPENDENCIASGENERALES)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar Departamento General" class="btn btn-danger" /> |
+            @* @Html.ActionLink("Regresar a los Registros", "Index") *@
+            <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
+        </div>
+    }
+</div>

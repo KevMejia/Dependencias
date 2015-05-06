@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Dependencias.Models.DEPENDENCIASGENERALES>
+
+
+@{
+    ViewBag.Title = "Dependencias Generales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva Dependencia General", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           @*@Html.DisplayNameFor(model => model.ANIOOPERACION)*@ Año de Operación
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.CLAVEDEPENDENCIAGENERAL)*@ Clave Dependencia General
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.NOMBREDEPENDENCIAGENERAL)*@ Nombre de la Dependencia General
+        </th>
+        <th>
+          @* @Html.DisplayNameFor(model => model.USUARIOCAPTURA)*@ Usuario que captura
+        </th>
+        <th>
+          @* @Html.DisplayNameFor(model => model.FECHACAPTURA)*@ Fecha de Captura
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ANIOOPERACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAGENERAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBREDEPENDENCIAGENERAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUARIOCAPTURA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHACAPTURA)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { id=item.CLAVEDEPENDENCIAGENERAL }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.CLAVEDEPENDENCIAGENERAL }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.CLAVEDEPENDENCIAGENERAL })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,68 @@
+﻿@model Dependencias.Models.DEPENDENCIASAUXILIARES
+
+@{
+    ViewBag.Title = "Dependencias Generales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Año de operación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANIOOPERACION)
+        </dd>
+
+        <dt>
+            Clave Dependencia Auxiliar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLAVEDEPENDENCIAAUXILIAR)
+        </dd>
+
+        <dt>
+            Nombre de la Dependencia Auxiliar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREDEPENDENCIAAUXILIAR)
+        </dd>
+
+        <dt>
+            Usuario que Captura
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIOCAPTURA)
+        </dd>
+
+        <dt>
+            Fecha de Captura
+        </dt>
+
+        <dd>
+            @{string fecha = Model.FECHACAPTURA.ToShortDateString();}
+            @Html.DisplayFor(model => fecha)
+        </dd>
+
+        <dt>
+            Status de Dependencias Generales
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUSDEPENDENCIASGENERALES)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar Registro", "ModificarDepAux", new { id = Model.CLAVEDEPENDENCIAAUXILIAR }) |
+   @* @Html.ActionLink("Regresar a los Registros", "Index") *@
+    <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
+</p>

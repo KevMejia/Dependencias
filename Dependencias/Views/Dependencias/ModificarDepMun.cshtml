@@ -1,0 +1,102 @@
+﻿@model Dependencias.Models.DEPENDENCIASMUNICIPIOS
+
+@{
+    ViewBag.Title = "Modificar Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Dependencias Municipio</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.EditorFor(model => model.CLAVEDEPENDENCIA)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Año de Operación</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ANIOOPERACION)
+                @Html.ValidationMessageFor(model => model.ANIOOPERACION)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Clave Dependencia Auxiliar</label>
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.CLAVEDEPENDENCIAGENERAL)*@
+
+                @{
+                    List<string> ListaDepGral = new List<string>();
+                    foreach (var item in ViewData["DepGral"] as List<Dependencias.Models.DEPENDENCIASGENERALES>)
+                    {
+                        ListaDepGral.Add(item.CLAVEDEPENDENCIAGENERAL);
+                    }
+                }
+                @Html.DropDownListFor(model => model.CLAVEDEPENDENCIAGENERAL, new SelectList(ListaDepGral, Model.CLAVEDEPENDENCIAGENERAL))
+
+                @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIAGENERAL)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre de la Dependencia Auxiliar</label>
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.CLAVEDEPENDENCIAAUXILIAR) *@
+                @{
+                    List<string> ListaDepAux = new List<string>();
+                    foreach (var item in ViewData["DepAux"] as List<Dependencias.Models.DEPENDENCIASAUXILIARES>)
+                    {
+                        ListaDepAux.Add(item.CLAVEDEPENDENCIAAUXILIAR);
+                    }
+                }
+                @Html.DropDownListFor(model => model.CLAVEDEPENDENCIAAUXILIAR, new SelectList(ListaDepAux, Model.CLAVEDEPENDENCIAAUXILIAR))               
+                @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIAAUXILIAR)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Usuario que Captura</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USUARIOCAPTURA)
+                @Html.ValidationMessageFor(model => model.USUARIOCAPTURA)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Fecha de Captura</label>
+            <div class="col-md-10">
+                @{var fecha = Model.FECHACAPTURA.ToShortDateString();}
+                @Html.EditorFor(model => fecha)
+                @Html.ValidationMessageFor(model => model.FECHACAPTURA)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Status de Dependencias Generales</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.STATUSDEPENDENCIASGENERALES)
+                @Html.ValidationMessageFor(model => model.STATUSDEPENDENCIASGENERALES)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @* @Html.ActionLink("Regresar a los Registros", "Index") *@
+    <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
