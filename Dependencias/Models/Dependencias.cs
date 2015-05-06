@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Dependencias.Models
 {
+    [Table("DEPENDENCIASGENERALES")]
     public class DEPENDENCIASGENERALES
     {
         [Required(ErrorMessage = "Se requiere que ingreses una clave de Dependencia")]

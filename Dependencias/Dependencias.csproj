@@ -174,10 +174,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DependenciasAuxController.cs" />
     <Compile Include="Controllers\DependenciasController.cs" />
-    <Compile Include="Controllers\DependenciasGeneralesController.cs" />
-    <Compile Include="Controllers\DependenciasMunicipiosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,22 +233,6 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\DependenciasGenerales\Create.cshtml" />
-    <Content Include="Views\DependenciasGenerales\Delete.cshtml" />
-    <Content Include="Views\DependenciasGenerales\Details.cshtml" />
-    <Content Include="Views\DependenciasGenerales\Edit.cshtml" />
-    <Content Include="Views\DependenciasGenerales\Index.cshtml" />
-    <Content Include="Views\DependenciasAux\Create.cshtml" />
-    <Content Include="Views\DependenciasAux\Delete.cshtml" />
-    <Content Include="Views\DependenciasAux\Details.cshtml" />
-    <Content Include="Views\DependenciasAux\Edit.cshtml" />
-    <Content Include="Views\DependenciasAux\Index.cshtml" />
-    <Content Include="Views\DependenciasMunicipios\Create.cshtml" />
-    <Content Include="Views\DependenciasMunicipios\Delete.cshtml" />
-    <Content Include="Views\DependenciasMunicipios\Details.cshtml" />
-    <Content Include="Views\DependenciasMunicipios\Edit.cshtml" />
-    <Content Include="Views\DependenciasMunicipios\Index.cshtml" />
-    <Content Include="Views\DependenciasGenerales\Tabs.cshtml" />
     <Content Include="Views\Dependencias\Index.cshtml" />
     <Content Include="Views\Dependencias\ModificarDepGral.cshtml" />
     <Content Include="Views\Dependencias\EliminarDepGral.cshtml" />
