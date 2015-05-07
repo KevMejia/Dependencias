@@ -54,7 +54,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Status de Dependencias Generales</label>
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.STATUSDEPENDENCIASGENERALES)
+                @Html.TextBoxFor(model => model.STATUSDEPENDENCIASGENERALES, new {required="required", max=1 })
                 @Html.ValidationMessageFor(model => model.STATUSDEPENDENCIASGENERALES)
             </div>
         </div>

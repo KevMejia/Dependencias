@@ -27,35 +27,35 @@
                     <th></th>
                 </tr>
 
-                @foreach (var item in ViewData["DepGral"] as List<Dependencias.Models.DEPENDENCIASGENERALES>)
+                @foreach (var itemGral in ViewData["DepGral"] as List<Dependencias.Models.DEPENDENCIASGENERALES>)
                 {
                     <tr>
                        @* <td>
-                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIA)
-                        </td>*@
+        @Html.DisplayFor(modelItem => itemGral.CLAVEDEPENDENCIA)
+    </td>*@
                         <td>
-                            @Html.DisplayFor(modelItem => item.ANIOOPERACION)
+                            @Html.DisplayFor(modelItem => itemGral.ANIOOPERACION)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAGENERAL)
+                            @Html.DisplayFor(modelItem => itemGral.CLAVEDEPENDENCIAGENERAL)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NOMBREDEPENDENCIAGENERAL)
+                            @Html.DisplayFor(modelItem => itemGral.NOMBREDEPENDENCIAGENERAL)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.USUARIOCAPTURA)
+                            @Html.DisplayFor(modelItem => itemGral.USUARIOCAPTURA)
                         </td>
                         <td>
-                            @{ string fecha = item.FECHACAPTURA.ToShortDateString(); }
+                            @{ string fecha = itemGral.FECHACAPTURA.ToShortDateString(); }
                             @Html.DisplayFor(modelItem => fecha)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.STATUSDEPENDENCIASGENERALES)
+                            @Html.DisplayFor(modelItem => itemGral.STATUSDEPENDENCIASGENERALES)
                         </td>
                         <td>
-                            @Html.ActionLink("Modificar", "ModificarDepGral", new { id = item.CLAVEDEPENDENCIAGENERAL}) |
-                            @Html.ActionLink("Detalles", "DetallesDepGral", new { id = item.CLAVEDEPENDENCIAGENERAL }) |
-                            @Html.ActionLink("Eliminar", "EliminarDepGral", new { id = item.CLAVEDEPENDENCIAGENERAL })
+                            @Html.ActionLink("Modificar", "ModificarDepGral", new { id = itemGral.CLAVEDEPENDENCIAGENERAL }) |
+                            @Html.ActionLink("Detalles", "DetallesDepGral", new { id = itemGral.CLAVEDEPENDENCIAGENERAL }) |
+                            @Html.ActionLink("Eliminar", "EliminarDepGral", new { id = itemGral.CLAVEDEPENDENCIAGENERAL })
                         </td>
                     </tr>
                 }
@@ -78,35 +78,35 @@
                     <th></th>
                 </tr>
 
-                @foreach (var item in ViewData["DepAux"] as List<Dependencias.Models.DEPENDENCIASAUXILIARES>)
+                @foreach (var itemAux in ViewData["DepAux"] as List<Dependencias.Models.DEPENDENCIASAUXILIARES>)
                 {
                     <tr>
                        @* <td>
-                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIA)
+                            @Html.DisplayFor(modelItem => itemAux.CLAVEDEPENDENCIA)
                         </td>*@
                         <td>
-                            @Html.DisplayFor(modelItem => item.ANIOOPERACION)
+                            @Html.DisplayFor(modelItem => itemAux.ANIOOPERACION)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAAUXILIAR)
+                            @Html.DisplayFor(modelItem => itemAux.CLAVEDEPENDENCIAAUXILIAR)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NOMBREDEPENDENCIAAUXILIAR)
+                            @Html.DisplayFor(modelItem => itemAux.NOMBREDEPENDENCIAAUXILIAR)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.USUARIOCAPTURA)
+                            @Html.DisplayFor(modelItem => itemAux.USUARIOCAPTURA)
                         </td>
                         <td>
-                            @{ string fecha = item.FECHACAPTURA.ToShortDateString(); }
+                            @{ string fecha = itemAux.FECHACAPTURA.ToShortDateString(); }
                             @Html.DisplayFor(modelItem => fecha)                        
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.STATUSDEPENDENCIASGENERALES)
+                            @Html.DisplayFor(modelItem => itemAux.STATUSDEPENDENCIASGENERALES)
                         </td>
                         <td>
-                            @Html.ActionLink("Modificar", "ModificarDepAux", new { id = item.CLAVEDEPENDENCIAAUXILIAR }) |
-                            @Html.ActionLink("Detalles", "DetallesDepAux", new { id = item.CLAVEDEPENDENCIAAUXILIAR }) |
-                            @Html.ActionLink("Eliminar", "EliminarDepAux", new { id = item.CLAVEDEPENDENCIAAUXILIAR })
+                            @Html.ActionLink("Modificar", "ModificarDepAux", new { id = itemAux.CLAVEDEPENDENCIAAUXILIAR }) |
+                            @Html.ActionLink("Detalles", "DetallesDepAux", new { id = itemAux.CLAVEDEPENDENCIAAUXILIAR }) |
+                            @Html.ActionLink("Eliminar", "EliminarDepAux", new { id = itemAux.CLAVEDEPENDENCIAAUXILIAR })
                         </td>
                     </tr>
                 }
@@ -128,32 +128,32 @@
                     <th></th>
                 </tr>
 
-                    @foreach (var item in ViewData["DepMun"] as List<Dependencias.Models.DEPENDENCIASMUNICIPIOS>)
+                    @foreach (var itemMun in ViewData["DepMun"] as List<Dependencias.Models.DEPENDENCIASMUNICIPIOS>)
                     {
                     <tr>
                        @* <td>
-                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIA)
+                            @Html.DisplayFor(modelItem => itemMun.CLAVEDEPENDENCIA)
                         </td>*@
                         <td>
-                            @Html.DisplayFor(modelItem => item.ANIOOPERACION)
+                            @Html.DisplayFor(modelItem => itemMun.ANIOOPERACION)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAGENERAL)@Html.DisplayFor(modelItem => item.CLAVEDEPENDENCIAAUXILIAR)
+                            @Html.DisplayFor(modelItem => itemMun.CLAVEDEPENDENCIAGENERAL)@Html.DisplayFor(modelItem => itemMun.CLAVEDEPENDENCIAAUXILIAR)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.USUARIOCAPTURA)
+                            @Html.DisplayFor(modelItem => itemMun.USUARIOCAPTURA)
                         </td>
                         <td>
-                            @{string fecha = item.FECHACAPTURA.ToShortDateString();}
+                            @{string fecha = itemMun.FECHACAPTURA.ToShortDateString();}
                             @Html.DisplayFor(modelItem => fecha)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.STATUSDEPENDENCIASGENERALES)
+                            @Html.DisplayFor(modelItem => itemMun.STATUSDEPENDENCIASGENERALES)
                         </td>
                         <td>
-                            @Html.ActionLink("Modificar", "ModificarDepMun", new { id = item.CLAVEDEPENDENCIAGENERAL, id2= item.CLAVEDEPENDENCIAAUXILIAR }) |
-                            @Html.ActionLink("Detalles", "DetallesDepMun", new { id = item.CLAVEDEPENDENCIAGENERAL, id2 = item.CLAVEDEPENDENCIAAUXILIAR }) |
-                            @Html.ActionLink("Eliminar", "EliminarDepMun", new { id = item.CLAVEDEPENDENCIAGENERAL, id2 = item.CLAVEDEPENDENCIAAUXILIAR })
+                            @Html.ActionLink("Modificar", "ModificarDepMun", new { id = itemMun.CLAVEDEPENDENCIAGENERAL, id2 = itemMun.CLAVEDEPENDENCIAAUXILIAR }) |
+                            @Html.ActionLink("Detalles", "DetallesDepMun", new { id = itemMun.CLAVEDEPENDENCIAGENERAL, id2 = itemMun.CLAVEDEPENDENCIAAUXILIAR }) |
+                            @Html.ActionLink("Eliminar", "EliminarDepMun", new { id = itemMun.CLAVEDEPENDENCIAGENERAL, id2 = itemMun.CLAVEDEPENDENCIAAUXILIAR })
                         </td>
                     </tr>
                 }

@@ -109,7 +109,7 @@ namespace Dependencias.Controllers
         // POST: /Dependencias/ModificarDepAux/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ModificarDepMun([Bind(Include = "ANIOOPERACION,CLAVEDEPENDENCIAGENERAL,CLAVEDEPENDENCIAAUXILIAR,USUARIOCAPTURA,FECHACAPTURA,STATUSDEPENDENCIASGENERALES")] DEPENDENCIASMUNICIPIOS dependenciasmunicipios)
+        public ActionResult ModificarDepMun([Bind(Include = "CLAVEDEPENDENCIA,ANIOOPERACION,CLAVEDEPENDENCIAGENERAL,CLAVEDEPENDENCIAAUXILIAR,USUARIOCAPTURA,FECHACAPTURA,STATUSDEPENDENCIASGENERALES")] DEPENDENCIASMUNICIPIOS dependenciasmunicipios)
         {
             if (ModelState.IsValid)
             {
@@ -189,6 +189,7 @@ namespace Dependencias.Controllers
             }
             return View(dependenciasmunicipios);
         }
+
 
         /*
          * 
