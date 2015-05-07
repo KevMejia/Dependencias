@@ -44,4 +44,5 @@ input[type="checkbox"].input-validation-error {
 table{
     background-color: #f1f1f1;
     height: auto;
+    width:100%;
 }

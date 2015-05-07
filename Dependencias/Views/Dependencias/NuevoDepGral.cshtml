@@ -15,7 +15,10 @@
         <hr />
         @Html.ValidationSummary(true)
 
-       <div class="form-group">
+        @Html.HiddenFor(model => model.CLAVEDEPENDENCIA, new { @Value = 1 })
+        @Html.HiddenFor(model => model.ANIOOPERACION, new { @Value = DateTime.Now.Year })
+
+      @* <div class="form-group">
             <label class="control-label col-md-2">Clave Dependencia</label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.CLAVEDEPENDENCIA, new { min="1", type="number"})
@@ -23,13 +26,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+       <div class="form-group">
             <label class="control-label col-md-2"> Año de Operación</label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.ANIOOPERACION, new { @Value = DateTime.Now.Year, max = DateTime.Now.Year, type = "number" })
                 @Html.ValidationMessageFor(model => model.ANIOOPERACION)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <label class="control-label col-md-2"> Clave de Dependencia General</label>
@@ -47,7 +50,10 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @Html.HiddenFor(model => model.USUARIOCAPTURA, new { @Value = @User.Identity.Name })
+        @Html.HiddenFor(model => model.FECHACAPTURA, new { @Value = @DateTime.Now.ToShortDateString() })
+
+       @* <div class="form-group">
             <label class="control-label col-md-2"> Usuario que Captura</label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.USUARIOCAPTURA, new { @Value = @User.Identity.Name })
@@ -61,7 +67,7 @@
                 @Html.TextBoxFor(model => model.FECHACAPTURA, new { @Value = @DateTime.Now.ToShortDateString() })
                 @Html.ValidationMessageFor(model => model.FECHACAPTURA)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <label class="control-label col-md-2">Status de Dependencias Generales</label>

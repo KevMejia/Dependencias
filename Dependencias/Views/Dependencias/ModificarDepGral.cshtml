@@ -16,8 +16,10 @@
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.CLAVEDEPENDENCIA)
+        @Html.HiddenFor(model => model.ANIOOPERACION)
+        @Html.HiddenFor(model => model.CLAVEDEPENDENCIAGENERAL)
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label class="control-label col-md-2">Año de Operación</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ANIOOPERACION)
@@ -31,7 +33,7 @@
                 @Html.EditorFor(model => model.CLAVEDEPENDENCIAGENERAL)
                 @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIAGENERAL)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <label class="control-label col-md-2">Nombre de la Dependencia General</label>
@@ -41,7 +43,10 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @Html.HiddenFor(model => model.USUARIOCAPTURA)
+        @Html.HiddenFor(model => model.FECHACAPTURA)
+
+       @* <div class="form-group">
             <label class="control-label col-md-2">Usuario que Captura</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.USUARIOCAPTURA)
@@ -55,7 +60,7 @@
                 @Html.EditorFor(model => model.FECHACAPTURA)
                 @Html.ValidationMessageFor(model => model.FECHACAPTURA)
             </div>
-        </div>
+        </div> *@
 
         <div class="form-group">
             <label class="control-label col-md-2">Status Dependencia General</label>
