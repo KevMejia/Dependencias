@@ -1,163 +1,102 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Dependencias";
+    DB2Conn db = new DB2Conn();
+
+    
 }
+@using Dependencias.Models
+@using GridMvc.Html
+@using GridMvc.Sorting
 
-<div id="container">
-    <input id="tab-1" type="radio" name="tab-group" checked="checked" />
-    <label for="tab-1">Dependencias Generales</label>
-    <input id="tab-2" type="radio" name="tab-group" />
-    <label for="tab-2">Dependencias Auxiliares</label>
-    <input id="tab-3" type="radio" name="tab-group" />
-    <label for="tab-3">Dependencias Municipio</label>
+    <button style="background-color:rgba(0,0,0,0); text-align:center; vertical-align:middle; border:1px; width:80%; height:30px; position:fixed; display:block;" type="button" data-toggle="modal" data-target="#NuevoDepGral">
+        <img src="~/Images/Modificar.png" title="Modificar" /><b> Nueva Dependencia General</b>
+    </button>
 
-    <div id="content">
-        <!--Dependencias Generales-->
-        <div id="content-1">
-            @Html.ActionLink("Crear nueva Dependencia General", "NuevoDepGral", null, new { @class="btn btn-success" })
-            <table class="table">
-                <tr>
-                    <!--<th>Clave dependencia</th>-->
-                    <th>Año de Operación</th>
-                    <th>Clave Dependencia General</th>
-                    <th>Nombre de la Dependencia General</th>
-                    <th>Usuario que captura</th>
-                    <th>Fecha de Captura</th>
-                    <th>Status Dependencias Generales</th>
-                    <th></th>
-                </tr>
-
-                @foreach (var itemGral in ViewData["DepGral"] as List<Dependencias.Models.DEPENDENCIASGENERALES>)
-                {
-                    <tr>
-                       @* <td>
-        @Html.DisplayFor(modelItem => itemGral.CLAVEDEPENDENCIA)
-    </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => itemGral.ANIOOPERACION)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemGral.CLAVEDEPENDENCIAGENERAL)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemGral.NOMBREDEPENDENCIAGENERAL)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemGral.USUARIOCAPTURA)
-                        </td>
-                        <td>
-                            @{ string fecha = itemGral.FECHACAPTURA.ToShortDateString(); }
-                            @Html.DisplayFor(modelItem => fecha)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemGral.STATUSDEPENDENCIASGENERALES)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Modificar", "ModificarDepGral", new { id = itemGral.CLAVEDEPENDENCIAGENERAL }) |
-                            @Html.ActionLink("Detalles", "DetallesDepGral", new { id = itemGral.CLAVEDEPENDENCIAGENERAL }) |
-                            @Html.ActionLink("Eliminar", "EliminarDepGral", new { id = itemGral.CLAVEDEPENDENCIAGENERAL })
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-
-
-        <!--Dependencias Auxiliares-->
-        <div id="content-2">
-            @Html.ActionLink("Crear nueva Dependencia Auxiliar", "NuevoDepAux", null, new { @class = "btn btn-success" })
-            <table class="table">
-                <tr>
-                   <!-- <th>Clave Dependencia</th>-->
-                    <th>Año de Operación</th>
-                    <th>Clave Dependencia Auxiliar</th>
-                    <th>Nombre de la Dependencia Auxiliar</th>
-                    <th>Usuario que captura</th>
-                    <th>Fecha de Captura</th>
-                    <th>Status Dependencias Generales</th>
-                    <th></th>
-                </tr>
-
-                @foreach (var itemAux in ViewData["DepAux"] as List<Dependencias.Models.DEPENDENCIASAUXILIARES>)
-                {
-                    <tr>
-                       @* <td>
-                            @Html.DisplayFor(modelItem => itemAux.CLAVEDEPENDENCIA)
-                        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => itemAux.ANIOOPERACION)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemAux.CLAVEDEPENDENCIAAUXILIAR)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemAux.NOMBREDEPENDENCIAAUXILIAR)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemAux.USUARIOCAPTURA)
-                        </td>
-                        <td>
-                            @{ string fecha = itemAux.FECHACAPTURA.ToShortDateString(); }
-                            @Html.DisplayFor(modelItem => fecha)                        
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemAux.STATUSDEPENDENCIASGENERALES)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Modificar", "ModificarDepAux", new { id = itemAux.CLAVEDEPENDENCIAAUXILIAR }) |
-                            @Html.ActionLink("Detalles", "DetallesDepAux", new { id = itemAux.CLAVEDEPENDENCIAAUXILIAR }) |
-                            @Html.ActionLink("Eliminar", "EliminarDepAux", new { id = itemAux.CLAVEDEPENDENCIAAUXILIAR })
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-
-
-        <!--Dependencias Municipio-->
-        <div id="content-3">
-           @Html.ActionLink("Crear nueva Dependencia Municipio", "NuevoDepMun", null, new { @class = "btn btn-success" })
-            <table class="table">
-                <tr>
-                   <!-- <th>Clave Dependencia</th>-->
-                    <th>Año de Operación</th>
-                    <th>Clave Dependencia</th>
-                    <th>Usuario que Captura</th>
-                    <th>Fecha de Captura</th>
-                    <th>Status Dependencias Generales</th>
-                    <th></th>
-                </tr>
-
-                    @foreach (var itemMun in ViewData["DepMun"] as List<Dependencias.Models.DEPENDENCIASMUNICIPIOS>)
-                    {
-                    <tr>
-                       @* <td>
-                            @Html.DisplayFor(modelItem => itemMun.CLAVEDEPENDENCIA)
-                        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => itemMun.ANIOOPERACION)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemMun.CLAVEDEPENDENCIAGENERAL)@Html.DisplayFor(modelItem => itemMun.CLAVEDEPENDENCIAAUXILIAR)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemMun.USUARIOCAPTURA)
-                        </td>
-                        <td>
-                            @{string fecha = itemMun.FECHACAPTURA.ToShortDateString();}
-                            @Html.DisplayFor(modelItem => fecha)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => itemMun.STATUSDEPENDENCIASGENERALES)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Modificar", "ModificarDepMun", new { id = itemMun.CLAVEDEPENDENCIAGENERAL, id2 = itemMun.CLAVEDEPENDENCIAAUXILIAR }) |
-                            @Html.ActionLink("Detalles", "DetallesDepMun", new { id = itemMun.CLAVEDEPENDENCIAGENERAL, id2 = itemMun.CLAVEDEPENDENCIAAUXILIAR }) |
-                            @Html.ActionLink("Eliminar", "EliminarDepMun", new { id = itemMun.CLAVEDEPENDENCIAGENERAL, id2 = itemMun.CLAVEDEPENDENCIAAUXILIAR })
-                        </td>
-                    </tr>
-                }
-            </table>
+    <div id="NuevoDepGral" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div style="color:black; background-color:white;border-radius:10px;">
+                @Html.Partial("NuevoDepGral")
+            </div>
         </div>
     </div>
-</div>
+
+    <div style="width:100%;margin-left: -96px;margin-top:30px;">
+        @Html.Grid(ViewData["DepGral"] as List<Dependencias.Models.DEPENDENCIASGENERALES>).Columns(columns =>
+            {
+
+    columns.Add().Encoded(false).Sanitized(false)
+        .RenderValueAs(c => @<div>
+            <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#DetallesDepGral">
+                <img src="~/Images/Detalles.png" title="Detalles" />
+            </button>
+
+            <div id="DetallesDepGral" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div style="border-radius:10px;background-color: white; color:black; width:400px; height: 300px; vertical-align:middle;">
+                         @Html.Partial("DetallesDepGral", db.DepGral.Find(c.CLAVEDEPENDENCIAGENERAL.ToString()))
+                    </div>
+                </div>
+            </div>
+        </div>);
+            
+            columns.Add().Encoded(false).Sanitized(false)
+        .RenderValueAs(c =>
+       @<div>
+            <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#ModificarDepGral">
+                <img src="~/Images/Modificar.png" title="Modificar" />
+            </button>
+        
+            <div id="ModificarDepGral" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div style="border-radius:10px;background-color: white; color:black; width:400px; height: auto; vertical-align:middle;">
+                        @Html.Partial("ModificarDepGral", db.DepGral.Find(c.CLAVEDEPENDENCIAGENERAL.ToString()))
+                    </div>
+                </div>
+            </div>
+        </div>);
+
+    columns.Add().Encoded(false).Sanitized(false)
+       .RenderValueAs(c => 
+       @<div>
+            <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#EliminarDepGral">
+                <img src="~/Images/Eliminar.png" title="Eliminar" />
+            </button>
+        
+            <div id="EliminarDepGral" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div style="border-radius:10px;background-color: white; color:black; width:450px; height:calc(auto + 20px); vertical-align:middle;">          
+                        @Html.Partial("EliminarDepGral", db.DepGral.Find(c.CLAVEDEPENDENCIAGENERAL.ToString()))   
+                    </div>
+                </div>
+            </div>
+        </div>);
+            
+    columns.Add(c => c.ANIOOPERACION).Titled("Año de Operación");
+    columns.Add(c => c.CLAVEDEPENDENCIAGENERAL).Titled("Clave de Dependencia General").SortInitialDirection(GridSortDirection.Descending);
+    columns.Add(c => c.NOMBREDEPENDENCIAGENERAL).Titled("Nombre de la Dependencia General");
+    columns.Add(c => c.USUARIOCAPTURA).Titled("Usuario que Captura");
+    columns.Add(c => c.FECHACAPTURA).Titled("Fecha de Captura").Format("{0:dd/MMMM/yyyy}");
+    columns.Add(c => c.STATUSDEPENDENCIASGENERALES).Titled("Estatus de Dependencias Generales");
+    }).Sortable().Filterable().WithMultipleFilters().WithPaging(10)
+    </div>
+
+    <script>
+        function centerModal() {
+            $(this).css('display', 'block');
+            var $dialog = $(this).find(".modal-dialog");
+            var offset = ($(window).height() - $dialog.height()) / 2;
+            //Make sure you don't hide the top part of the modal w/ a negative margin if it's longer than the screen height, and keep the margin equal to the bottom margin of the modal
+            var bottomMargin = $dialog.css('marginBottom');
+            bottomMargin = parseInt(bottomMargin);
+            if (offset < bottomMargin) offset = bottomMargin;
+            $dialog.css("margin-top", offset);
+        }
+
+        $('.modal').on('show.bs.modal', centerModal);
+        $(window).on("resize", function () {
+            $('.modal:visible').each(centerModal);
+        });
+    </script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>

@@ -37,7 +37,7 @@
         <div class="form-group">
             <label class="control-label col-md-2"> Clave de Dependencia Auxiliar</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CLAVEDEPENDENCIAAUXILIAR)
+                @Html.TextBoxFor(model => model.CLAVEDEPENDENCIAAUXILIAR, new { required = "required", @maxlength = "4" })
                 @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIAAUXILIAR)
             </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="form-group">
             <label class="control-label col-md-2"> Nombre de la Dependencia Auxiliar</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NOMBREDEPENDENCIAAUXILIAR)
+                @Html.TextBoxFor(model => model.NOMBREDEPENDENCIAAUXILIAR, new { required = "required"})
                 @Html.ValidationMessageFor(model => model.NOMBREDEPENDENCIAAUXILIAR)
             </div>
         </div>
@@ -72,7 +72,7 @@
         <div class="form-group">
                 <label class="control-label col-md-2">Status de Dependencias Generales</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.STATUSDEPENDENCIASGENERALES)
+                    @Html.TextBoxFor(model => model.STATUSDEPENDENCIASGENERALES, new { required = "required", @maxlength = "1" })
                     @Html.ValidationMessageFor(model => model.STATUSDEPENDENCIASGENERALES)
                 </div>
             </div>

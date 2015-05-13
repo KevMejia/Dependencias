@@ -312,7 +312,7 @@ html {
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 1.35em;
   line-height: 1.428571429;
   color: #333333;
   background-color: #ffffff;
@@ -1961,7 +1961,7 @@ textarea.input-lg {
 .form-horizontal .checkbox,
 .form-horizontal .radio-inline,
 .form-horizontal .checkbox-inline {
-  padding-top: 7px;
+  padding-top: 0px;
   margin-top: 0;
   margin-bottom: 0;
 }

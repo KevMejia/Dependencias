@@ -122,3 +122,6 @@ C:\Sites\Dependencias\Dependencias\bin\Microsoft.Owin.Security.MicrosoftAccount.
 C:\Sites\Dependencias\Dependencias\obj\Debug\Dependencias.csprojResolveAssemblyReference.cache
 C:\Sites\Dependencias\Dependencias\obj\Debug\Dependencias.dll
 C:\Sites\Dependencias\Dependencias\obj\Debug\Dependencias.pdb
+C:\Sites\Dependencias\Dependencias\bin\GridMvc.dll
+C:\Sites\Dependencias\Dependencias\bin\Scripts\gridmvc.js
+C:\Sites\Dependencias\Dependencias\bin\Scripts\gridmvc.lang.ru.js

@@ -15,11 +15,12 @@ namespace Dependencias.Controllers
         private DB2Conn db = new DB2Conn();
 
         // GET: /Dependencias/
+        [Authorize]
         public ActionResult Index()
         {
             ViewData["DepGral"] = db.DepGral.ToList();
-            ViewData["DepAux"] = db.DepAux.ToList();
-            ViewData["DepMun"] = db.DepMun.ToList();
+            //ViewData["DepAux"] = db.DepAux.ToList();
+            //ViewData["DepMun"] = db.DepMun.ToList();
             return View();
         }
 
@@ -173,14 +174,13 @@ namespace Dependencias.Controllers
             ViewData["DepAux"] = db.DepAux.ToList();
             return View();
         }
-
+        
         //POST
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult NuevoDepMun([Bind(Include = "ANIOOPERACION,CLAVEDEPENDENCIAGENERAL,CLAVEDEPENDENCIAAUXILIAR,USUARIOCAPTURA,FECHACAPTURA,STATUSDEPENDENCIASGENERALES")] DEPENDENCIASMUNICIPIOS dependenciasmunicipios)
         {
-            
             if (ModelState.IsValid)
             {
                 db.DepMun.Add(dependenciasmunicipios);
@@ -189,7 +189,7 @@ namespace Dependencias.Controllers
             }
             return View(dependenciasmunicipios);
         }
-
+       
 
         /*
          * 
@@ -216,10 +216,11 @@ namespace Dependencias.Controllers
         // POST: /Dependencias/DepGral/EliminarDepGral/5
         [HttpPost, ActionName("EliminarDepGral")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed([Bind(Include = "CLAVEDEPENDENCIA,ANIOOPERACION,CLAVEDEPENDENCIAGENERAL,NOMBREDEPENDENCIAGENERAL,USUARIOCAPTURA,FECHACAPTURA,STATUSDEPENDENCIASGENERALES")]DEPENDENCIASGENERALES dependenciasgenerales)
         {
-            DEPENDENCIASGENERALES dependenciasgenerales = db.DepGral.Find(id);
-            db.DepGral.Remove(dependenciasgenerales);
+            string id = dependenciasgenerales.CLAVEDEPENDENCIAGENERAL.ToString();
+            DEPENDENCIASGENERALES dep = db.DepGral.Find(id);
+            db.DepGral.Remove(dep);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

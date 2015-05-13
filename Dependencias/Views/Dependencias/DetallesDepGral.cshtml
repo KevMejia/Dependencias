@@ -1,14 +1,7 @@
 ﻿@model Dependencias.Models.DEPENDENCIASGENERALES
 
-@{
-    ViewBag.Title = "Dependencias Generales";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Detalles</h2>
+<h2>Detalles de la Dependencia General</h2>
         <div>
-            <h4>@ViewBag.Title</h4>
-            <hr />
             <dl class="dl-horizontal">
                 <dt>
                     Año de operación
@@ -62,7 +55,7 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Modificar Registro", "ModificarDepGral", new { id = Model.CLAVEDEPENDENCIAGENERAL }) |
-            @* @Html.ActionLink("Regresar a los Registros", "Index") *@
-            <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
+           @* @Html.ActionLink("Modificar Registro", "ModificarDepGral", new { id = Model.CLAVEDEPENDENCIAGENERAL }) |
+             @Html.ActionLink("Regresar a los Registros", "Index") 
+            <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>*@
         </p>

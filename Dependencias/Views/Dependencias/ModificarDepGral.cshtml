@@ -1,13 +1,8 @@
 ﻿@model Dependencias.Models.DEPENDENCIASGENERALES
 
-@{
-    ViewBag.Title = "Modificar Registro";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+<h2>Modificar Registro</h2>
 
-<h2>@ViewBag.Title</h2>
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("ModificarDepGral", "Dependencias", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -44,7 +39,7 @@
         </div>
 
         @Html.HiddenFor(model => model.USUARIOCAPTURA)
-        @Html.HiddenFor(model => model.FECHACAPTURA)
+        @Html.HiddenFor(model => model.FECHACAPTURA, new { @Value=@DateTime.Now.ToShortDateString() })
 
        @* <div class="form-group">
             <label class="control-label col-md-2">Usuario que Captura</label>
@@ -79,10 +74,5 @@
 }
 
 <div>
-    @* @Html.ActionLink("Regresar a los Registros", "Index") *@
     <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

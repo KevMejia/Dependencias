@@ -40,10 +40,10 @@
                     List<string> ListaDepAux = new List<string>();
                     foreach (var item in ViewData["DepAux"] as List<Dependencias.Models.DEPENDENCIASAUXILIARES>)
                     {
-                     ListaDepAux.Add(item.CLAVEDEPENDENCIAAUXILIAR);
+                        ListaDepAux.Add(item.CLAVEDEPENDENCIAAUXILIAR);
                     }
+                    @Html.DropDownListFor(model => model.CLAVEDEPENDENCIAAUXILIAR, new SelectList(ListaDepAux))
                 }
-                @Html.DropDownListFor(model => model.CLAVEDEPENDENCIAAUXILIAR, new SelectList(ListaDepAux))
                 @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIAAUXILIAR)
             </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Status de Dependencias Generales</label>
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.STATUSDEPENDENCIASGENERALES, new {required="required", max=1 })
+                @Html.TextBoxFor(model => model.STATUSDEPENDENCIASGENERALES, new { required = "required", @maxlength = "1" })
                 @Html.ValidationMessageFor(model => model.STATUSDEPENDENCIASGENERALES)
             </div>
         </div>

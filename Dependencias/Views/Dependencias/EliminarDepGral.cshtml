@@ -1,11 +1,9 @@
 ﻿@model Dependencias.Models.DEPENDENCIASGENERALES
 
 @{
-    ViewBag.Title = "Eliminar Dependencia General";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout=null;
 }
-
-<h2>@ViewBag.Title</h2>
+<h2>Eliminar Dependencia General</h2>
 
 <h3>¿Estás seguro que quieres eliminar esto?</h3>
 <div>
@@ -62,14 +60,14 @@
 
     </dl>
 
-    @using (Html.BeginForm())
+
+    @using (Html.BeginForm("EliminarDepGral", "Dependencias", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
+        @Html.HiddenFor(model => model.CLAVEDEPENDENCIAGENERAL)
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar Departamento General" class="btn btn-danger" /> |
-            @* @Html.ActionLink("Regresar a los Registros", "Index") *@
-            <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
+            <input type="submit" value="Eliminar Departamento General" class="btn btn-danger" /> 
         </div>
     }
 </div>

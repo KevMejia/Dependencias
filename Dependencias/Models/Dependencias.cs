@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace Dependencias.Models
 {
-    [Table("DEPENDENCIASGENERALES")]
     public class DEPENDENCIASGENERALES
     {
-        [Key][Column(Order = 0)]
-        [Required(ErrorMessage = "Se requiere que ingreses una clave de Dependencia")]
+        [Column(Order = 0)][Required(ErrorMessage = "Se requiere que ingreses una clave de Dependencia")]
         public int CLAVEDEPENDENCIA { get; set; }
-        [Required]
-        [Key][Column(Order = 1)]
+        [Column(Order = 1)][Required]
         public int ANIOOPERACION { get; set; }
-        [Key][Column(Order = 2)]
-        [Required(ErrorMessage="Se requiere que ingreses una clave de Dependencia General")]
+        [Key][Column(Order = 2)][Required(ErrorMessage="Se requiere que ingreses una clave de Dependencia General")]
         public string CLAVEDEPENDENCIAGENERAL { get; set; }
         [Required(ErrorMessage = "Se requiere que ingreses un nombre de Dependencia General")]
         public string NOMBREDEPENDENCIAGENERAL { get; set; }
@@ -30,17 +23,13 @@ namespace Dependencias.Models
         public string STATUSDEPENDENCIASGENERALES { get; set; }
     }
 
-    [Table("DEPENDENCIASAUXILIARES")]
     public class DEPENDENCIASAUXILIARES
     {
         [Required]
-        [Key][Column(Order = 0)]
         public int CLAVEDEPENDENCIA { get; set; }
         [Required(ErrorMessage="Es necesario este campo")]
-        [Key][Column(Order = 1)]
         public int ANIOOPERACION { get; set; }
-        [Key][Column(Order = 2)]
-        [Required(ErrorMessage = "Se necesita una Clave de Dependencia")]
+        [Key][Column(Order = 2)][Required(ErrorMessage = "Se necesita una Clave de Dependencia")]
         public string CLAVEDEPENDENCIAAUXILIAR { get; set; }
         [Required(ErrorMessage = "Se requiere que ingreses un nombre de Dependencia Auxiliar")]
         public string NOMBREDEPENDENCIAAUXILIAR { get; set; }
@@ -52,20 +41,15 @@ namespace Dependencias.Models
         public string STATUSDEPENDENCIASGENERALES { get; set; }
     }
 
-    [Table("DEPENDENCIASMUNICIPIOS")]
     public class DEPENDENCIASMUNICIPIOS
     {
-        [Key][Column(Order = 0)]
         [Required(ErrorMessage="Se requiere una Clave de Dependencia")]
         public int CLAVEDEPENDENCIA { get; set; }
-        [Required(ErrorMessage="Se necesita un año de operación")]
-        [Key][Column(Order = 1)]
+        [Required(ErrorMessage = "Se necesita un año de operación")]
         public int ANIOOPERACION { get; set; }
-        [Required(ErrorMessage="Se necesita una clave de dependencia general")]
-        [Key][Column(Order=2)]
+        [Key][Column(Order = 2)][Required(ErrorMessage = "Se necesita una clave de dependencia general")]
         public string CLAVEDEPENDENCIAGENERAL { get; set; }
-        [Required(ErrorMessage="Se necesita una Clave de Dependencia Auxiliar")]
-        [Key][Column(Order = 3)]
+        [Key][Column(Order = 3)][Required(ErrorMessage = "Se necesita una Clave de Dependencia Auxiliar")]
         public string CLAVEDEPENDENCIAAUXILIAR { get; set; }
         [Required(ErrorMessage="Es necesario este campo")]
         public string USUARIOCAPTURA { get; set; }
