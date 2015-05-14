@@ -1,11 +1,6 @@
 ﻿@model Dependencias.Models.DEPENDENCIASAUXILIARES
 
-@{
-    ViewBag.Title = "Eliminar Dependencia Auxiliar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>@ViewBag.Title</h2>
+<h2>Eliminar Dependencia Auxiliar</h2>
 
 <h3>¿Estás seguro que quieres eliminar esto?</h3>
 <div>
@@ -62,14 +57,13 @@
 
     </dl>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("EliminarDepAux", "Dependencias", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
+        @Html.HiddenFor(model => model.CLAVEDEPENDENCIAAUXILIAR)
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar Departamento Auxiliar" class="btn btn-danger" /> |
-            @* @Html.ActionLink("Regresar a los Registros", "Index") *@
-            <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
+            <input type="submit" value="Eliminar Dependencia Auxiliar" class="btn btn-danger" />
         </div>
     }
 </div>

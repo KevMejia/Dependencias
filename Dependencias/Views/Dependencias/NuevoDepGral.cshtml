@@ -1,99 +1,49 @@
 ﻿@model Dependencias.Models.DEPENDENCIASGENERALES
 
-<style>
-#NuevoDp{
-    margin-top: 10px;
-    margin-left:10px;
-}
-</style>
-<div id="NuevoDP">
-    <h2>Nueva Dependencia General</h2>
+<h2>Nueva Dependencia General</h2>
 
-    @using (Html.BeginForm("NuevoDepGral", "Dependencias", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
+@using (Html.BeginForm("NuevoDepGral", "Dependencias", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true)
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
 
-            @Html.HiddenFor(model => model.CLAVEDEPENDENCIA, new { @Value = 1 })
-            @Html.HiddenFor(model => model.ANIOOPERACION, new { @Value = DateTime.Now.Year })
+        @Html.HiddenFor(model => model.CLAVEDEPENDENCIA, new { @Value = 1 })
+        @Html.HiddenFor(model => model.ANIOOPERACION, new { @Value = 2015 })
 
-            @* <div class="form-group">
-                     <label class="control-label col-md-2">Clave Dependencia</label>
-                     <div class="col-md-10">
-                         @Html.TextBoxFor(model => model.CLAVEDEPENDENCIA, new { min="1", type="number"})
-                         @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIA)
-                     </div>
-                 </div>
-
-                <div class="form-group">
-                     <label class="control-label col-md-2"> Año de Operación</label>
-                     <div class="col-md-10">
-                         @Html.TextBoxFor(model => model.ANIOOPERACION, new { @Value = DateTime.Now.Year, max = DateTime.Now.Year, type = "number" })
-                         @Html.ValidationMessageFor(model => model.ANIOOPERACION)
-                     </div>
-                 </div>*@
-
-            <div class="form-group">
-                <label class="control-label col-md-2"> Clave de Dependencia General</label>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CLAVEDEPENDENCIAGENERAL, new { required = "required", @maxlength = "4" })
-                    @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIAGENERAL)
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2"> Nombre de la Dependencia General</label>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.NOMBREDEPENDENCIAGENERAL, new { required = "required", @maxlength = "80" })
-                    @Html.ValidationMessageFor(model => model.NOMBREDEPENDENCIAGENERAL)
-                </div>
-            </div>
-
-            @Html.HiddenFor(model => model.USUARIOCAPTURA, new { @Value = @User.Identity.Name })
-            @Html.HiddenFor(model => model.FECHACAPTURA, new { @Value = @DateTime.Now.ToShortDateString() })
-
-            @* <div class="form-group">
-                    <label class="control-label col-md-2"> Usuario que Captura</label>
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.USUARIOCAPTURA, new { @Value = @User.Identity.Name })
-                        @Html.ValidationMessageFor(model => model.USUARIOCAPTURA)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2"> Fecha de Captura</label>
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.FECHACAPTURA, new { @Value = @DateTime.Now.ToShortDateString() })
-                        @Html.ValidationMessageFor(model => model.FECHACAPTURA)
-                    </div>
-                </div>*@
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Status de Dependencias Generales</label>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.STATUSDEPENDENCIASGENERALES, new { required = "required", @maxlength = "1" })
-                    @Html.ValidationMessageFor(model => model.STATUSDEPENDENCIASGENERALES)
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Crear nueva Dependencia General" class="btn btn-success" />
-                </div>
+        <div class="form-group">
+            <label class="control-label col-md-2"> Clave de Dependencia General</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.CLAVEDEPENDENCIAGENERAL, new { required = "required", @maxlength = "4" })
+                @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIAGENERAL)
             </div>
         </div>
-    }
-</div>
 
-@*<div>
-     @Html.ActionLink("Regresar a los Registros", "Index") 
-    <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
-</div>*@
-    
-@*
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
+        <div class="form-group">
+            <label class="control-label col-md-2"> Nombre de la Dependencia General</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.NOMBREDEPENDENCIAGENERAL, new { required = "required", @maxlength = "80" })
+                @Html.ValidationMessageFor(model => model.NOMBREDEPENDENCIAGENERAL)
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.USUARIOCAPTURA, new { @Value = @User.Identity.Name })
+        @Html.HiddenFor(model => model.FECHACAPTURA, new { @Value = @DateTime.Now.ToShortDateString() })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Status de Dependencias Generales</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.STATUSDEPENDENCIASGENERALES, new { required = "required", @maxlength = "1" })
+                @Html.ValidationMessageFor(model => model.STATUSDEPENDENCIASGENERALES)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear nueva Dependencia General" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}

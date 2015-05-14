@@ -1,24 +1,11 @@
 ﻿@model Dependencias.Models.DEPENDENCIASMUNICIPIOS
 
-@{
-    ViewBag.Title = "Eliminar Dependencia Municipio";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>@ViewBag.Title</h2>
+<h2>Eliminar Dependencia municipio</h2>
 
 <h3>¿Estás seguro que quieres eliminar esto?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            Clave Dependencia
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CLAVEDEPENDENCIA)
-        </dd>
-
         <dt>
             Año de operación
         </dt>
@@ -70,14 +57,14 @@
 
     </dl>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("EliminarDepmun", "Dependencias", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(c=> c.CLAVEDEPENDENCIAGENERAL)
+        @Html.HiddenFor(c=> c.CLAVEDEPENDENCIAAUXILIAR)
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar Dependencia Municipio" class="btn btn-danger" /> |
-            @* @Html.ActionLink("Regresar a los Registros", "Index") *@
-            <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
+            <input type="submit" value="Eliminar Dependencia Municipio" class="btn btn-danger" />
         </div>
     }
 </div>

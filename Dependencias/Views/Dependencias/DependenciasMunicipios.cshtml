@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DB2Conn db = new DB2Conn();
+
+
+}
+@using Dependencias.Models
+@using GridMvc.Html
+@using GridMvc.Sorting
+
+
+
+<button style="background-color:rgba(0,0,0,0); text-align:center; vertical-align:middle; border:1px; width:80%; height:30px; position:fixed; display:block;" type="button" data-toggle="modal" data-target="#NuevoDepMun">
+    <img src="~/Images/Modificar.png" title="Modificar" /><b> Nueva Dependencia Municipio</b>
+</button>
+
+<div id="NuevoDepMun" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div style="color:black; background-color:white;border-radius:10px;">
+            @Html.Partial("NuevoDepMun")
+        </div>
+    </div>
+</div>
+
+<div style="width:100%;margin-left: -96px;margin-top:30px;">
+    @Html.Grid(ViewData["DepMun"] as List<DEPENDENCIASMUNICIPIOS>).Columns(columns =>
+            {
+
+                columns.Add().Encoded(false).Sanitized(false)
+                    .RenderValueAs(c => @<div>
+                        <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#DetallesDepMun@{@c.CLAVEDEPENDENCIAGENERAL@c.CLAVEDEPENDENCIAAUXILIAR}">
+                            <img src="~/Images/Detalles.png" title="Detalles" />
+                        </button>
+
+                        <div id="DetallesDepMun@{@c.CLAVEDEPENDENCIAGENERAL@c.CLAVEDEPENDENCIAAUXILIAR}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div style="border-radius:10px;background-color: white; color:black; width:400px; height: 300px; vertical-align:middle;">
+                                    @Html.Partial("DetallesDepMun", db.DepMun.FirstOrDefault(i=> i.CLAVEDEPENDENCIAGENERAL==c.CLAVEDEPENDENCIAGENERAL && i.CLAVEDEPENDENCIAAUXILIAR==c.CLAVEDEPENDENCIAAUXILIAR))
+                                </div>
+                            </div>
+                        </div>
+                    </div>);
+
+                columns.Add().Encoded(false).Sanitized(false)
+            .RenderValueAs(c => @<div>
+                        <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#ModificarDepMun@{@c.CLAVEDEPENDENCIAGENERAL@c.CLAVEDEPENDENCIAAUXILIAR}">
+                            <img src="~/Images/Modificar.png" title="Modificar" />
+                        </button>
+
+                        <div id="ModificarDepMun@{@c.CLAVEDEPENDENCIAGENERAL@c.CLAVEDEPENDENCIAAUXILIAR}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div style="border-radius:10px;background-color: white; color:black; width:400px; height: auto; vertical-align:middle;">
+                                    @Html.Partial("ModificarDepMun", db.DepMun.FirstOrDefault(i => i.CLAVEDEPENDENCIAGENERAL == c.CLAVEDEPENDENCIAGENERAL && i.CLAVEDEPENDENCIAAUXILIAR == c.CLAVEDEPENDENCIAAUXILIAR))
+                                </div>
+                            </div>
+                        </div>
+                    </div>);
+
+                columns.Add().Encoded(false).Sanitized(false)
+                   .RenderValueAs(c =>
+                    @<div>
+                        <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#EliminarDepMun@{@c.CLAVEDEPENDENCIAGENERAL@c.CLAVEDEPENDENCIAAUXILIAR}">
+                            <img src="~/Images/Eliminar.png" title="Eliminar" />
+                        </button>
+
+                        <div id="EliminarDepMun@{@c.CLAVEDEPENDENCIAGENERAL@c.CLAVEDEPENDENCIAAUXILIAR}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div style="border-radius:10px;background-color: white; color:black; width:450px; height:calc(auto + 20px); vertical-align:middle;">
+                                    @Html.Partial("EliminarDepMun", db.DepMun.FirstOrDefault(i => i.CLAVEDEPENDENCIAGENERAL == c.CLAVEDEPENDENCIAGENERAL && i.CLAVEDEPENDENCIAAUXILIAR == c.CLAVEDEPENDENCIAAUXILIAR))
+                                </div>
+                            </div>
+                        </div>
+                    </div>);
+
+                columns.Add(c => c.ANIOOPERACION).Titled("Año de Operación");
+                columns.Add(c => c.CLAVEDEPENDENCIAGENERAL).Titled("Clave de Dependencia General").SortInitialDirection(GridSortDirection.Descending);
+                columns.Add(c => c.CLAVEDEPENDENCIAAUXILIAR).Titled("Clave de Dependencia Auxiliar");
+                columns.Add(c => c.USUARIOCAPTURA).Titled("Usuario que Captura");
+                columns.Add(c => c.FECHACAPTURA).Titled("Fecha de Captura").Format("{0:dd/MMMM/yyyy}");
+                columns.Add(c => c.STATUSDEPENDENCIASGENERALES).Titled("Estatus de Dependencias Generales");
+            }).Sortable().Filterable().WithMultipleFilters().WithPaging(10)
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>

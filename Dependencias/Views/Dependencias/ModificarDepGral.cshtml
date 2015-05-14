@@ -14,22 +14,6 @@
         @Html.HiddenFor(model => model.ANIOOPERACION)
         @Html.HiddenFor(model => model.CLAVEDEPENDENCIAGENERAL)
 
-        @*<div class="form-group">
-            <label class="control-label col-md-2">Año de Operación</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ANIOOPERACION)
-                @Html.ValidationMessageFor(model => model.ANIOOPERACION)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Clave Dependencia General</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CLAVEDEPENDENCIAGENERAL)
-                @Html.ValidationMessageFor(model => model.CLAVEDEPENDENCIAGENERAL)
-            </div>
-        </div>*@
-
         <div class="form-group">
             <label class="control-label col-md-2">Nombre de la Dependencia General</label>
             <div class="col-md-10">
@@ -38,24 +22,8 @@
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.USUARIOCAPTURA)
+        @Html.HiddenFor(model => model.USUARIOCAPTURA, new { @Value=@User.Identity.Name })
         @Html.HiddenFor(model => model.FECHACAPTURA, new { @Value=@DateTime.Now.ToShortDateString() })
-
-       @* <div class="form-group">
-            <label class="control-label col-md-2">Usuario que Captura</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.USUARIOCAPTURA)
-                @Html.ValidationMessageFor(model => model.USUARIOCAPTURA)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Fecha de Captura</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FECHACAPTURA)
-                @Html.ValidationMessageFor(model => model.FECHACAPTURA)
-            </div>
-        </div> *@
 
         <div class="form-group">
             <label class="control-label col-md-2">Status Dependencia General</label>

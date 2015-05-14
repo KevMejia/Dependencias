@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dependencias.Models;
+using System.Web.Routing;
 
 namespace Dependencias.Controllers
 {
@@ -19,8 +20,21 @@ namespace Dependencias.Controllers
         public ActionResult Index()
         {
             ViewData["DepGral"] = db.DepGral.ToList();
-            //ViewData["DepAux"] = db.DepAux.ToList();
-            //ViewData["DepMun"] = db.DepMun.ToList();
+            return View();
+        }
+
+        // GET: /Dependencias/DependenciasAuxiliares
+        [Authorize]
+        public ActionResult DependenciasAuxiliares()
+        {
+            ViewData["DepAux"] = db.DepAux.ToList();
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult DependenciasMunicipios()
+        {
+            ViewData["DepMun"] = db.DepMun.ToList();          
             return View();
         }
 
@@ -83,7 +97,7 @@ namespace Dependencias.Controllers
             {
                 db.Entry(dependenciasauxiliares).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DependenciasAuxiliares");
             }
                 return View(dependenciasauxiliares);   
         }
@@ -102,8 +116,6 @@ namespace Dependencias.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["DepGral"] = db.DepGral.ToList();
-            ViewData["DepAux"] = db.DepAux.ToList();
             return View(dependenciasmunicipios);
         }
 
@@ -116,7 +128,7 @@ namespace Dependencias.Controllers
             {
                 db.Entry(dependenciasmunicipios).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DependenciasMunicipios");
             }
             return View(dependenciasmunicipios);
         }
@@ -141,7 +153,7 @@ namespace Dependencias.Controllers
             {
                 db.DepGral.Add(dependenciasgenerales);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new RouteValueDictionary(new { controller="Dependencias", action="Index"}));
             }
             return View(dependenciasgenerales);
             
@@ -162,7 +174,7 @@ namespace Dependencias.Controllers
             {
                 db.DepAux.Add(dependenciasauxiliares);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DependenciasAuxiliares");
             }
             return View(dependenciasauxiliares);
         }
@@ -170,8 +182,6 @@ namespace Dependencias.Controllers
         [Authorize]
         public ActionResult NuevoDepMun()
         {
-            ViewData["DepGral"] = db.DepGral.ToList();
-            ViewData["DepAux"] = db.DepAux.ToList();
             return View();
         }
         
@@ -179,13 +189,13 @@ namespace Dependencias.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult NuevoDepMun([Bind(Include = "ANIOOPERACION,CLAVEDEPENDENCIAGENERAL,CLAVEDEPENDENCIAAUXILIAR,USUARIOCAPTURA,FECHACAPTURA,STATUSDEPENDENCIASGENERALES")] DEPENDENCIASMUNICIPIOS dependenciasmunicipios)
+        public ActionResult NuevoDepMun([Bind(Include = "CLAVEDEPENDENCIA,ANIOOPERACION,CLAVEDEPENDENCIAGENERAL,CLAVEDEPENDENCIAAUXILIAR,USUARIOCAPTURA,FECHACAPTURA,STATUSDEPENDENCIASGENERALES")] DEPENDENCIASMUNICIPIOS dependenciasmunicipios)
         {
             if (ModelState.IsValid)
             {
                 db.DepMun.Add(dependenciasmunicipios);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DependenciasMunicipios");
             }
             return View(dependenciasmunicipios);
         }
@@ -244,12 +254,13 @@ namespace Dependencias.Controllers
         // POST: /Dependencias/DepAux/EliminarDepAux/5
         [HttpPost, ActionName("EliminarDepAux")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmedDepAux(string id)
+        public ActionResult DeleteConfirmedDepAux([Bind(Include="CLAVEDEPENDENCIA,ANIOOPERACION,CLAVEDEPENDENCIAAUXILIAR,NOMBREDEPENDENCIAAUXILIAR,USUARIOCAPTURA,FECHACAPTURA,STATUSDEPENDENCIASGENERALES")] DEPENDENCIASAUXILIARES dependenciasauxiliares)
         {
-            DEPENDENCIASAUXILIARES dependenciasauxiliares = db.DepAux.Find(id);
-            db.DepAux.Remove(dependenciasauxiliares);
+            string id = dependenciasauxiliares.CLAVEDEPENDENCIAAUXILIAR.ToString();
+            DEPENDENCIASAUXILIARES depAux = db.DepAux.Find(id);
+            db.DepAux.Remove(depAux);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("DependenciasAuxiliares");
         }
 
         // GET: /Dependencias/DepMun/EliminarDepMun/5,2
@@ -271,13 +282,16 @@ namespace Dependencias.Controllers
         // POST: /Dependencias/DepAux/EliminarDepAux/5
         [HttpPost, ActionName("EliminarDepMun")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmedDepMun(string id, string id2)
+        public ActionResult DeleteConfirmedDepMun([Bind(Include = "CLAVEDEPENDENCIA,ANIOOPERACION,CLAVEDEPENDENCIAGENERAL,CLAVEDEPENDENCIAAUXILIAR,USUARIOCAPTURA,FECHACAPTURA,STATUSDEPENDENCIASGENERALES")] DEPENDENCIASMUNICIPIOS dependenciasmunicipios)
         {
-            var dependenciasmunicipios1 = db.DepMun.FirstOrDefault(i => i.CLAVEDEPENDENCIAGENERAL == id && i.CLAVEDEPENDENCIAAUXILIAR == id2);
-            db.DepMun.Remove(dependenciasmunicipios1);
+            string id = dependenciasmunicipios.CLAVEDEPENDENCIAGENERAL.ToString();
+            string id2 = dependenciasmunicipios.CLAVEDEPENDENCIAAUXILIAR.ToString();
+            DEPENDENCIASMUNICIPIOS depMun = db.DepMun.Where(i => i.CLAVEDEPENDENCIAGENERAL == id && i.CLAVEDEPENDENCIAAUXILIAR == id2).FirstOrDefault();
+            db.DepMun.Remove(depMun);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("DependenciasMunicipios");
         }
+
 
         /*
          * 

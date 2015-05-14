@@ -8,6 +8,8 @@
 @using GridMvc.Html
 @using GridMvc.Sorting
 
+
+
     <button style="background-color:rgba(0,0,0,0); text-align:center; vertical-align:middle; border:1px; width:80%; height:30px; position:fixed; display:block;" type="button" data-toggle="modal" data-target="#NuevoDepGral">
         <img src="~/Images/Modificar.png" title="Modificar" /><b> Nueva Dependencia General</b>
     </button>
@@ -26,27 +28,28 @@
 
     columns.Add().Encoded(false).Sanitized(false)
         .RenderValueAs(c => @<div>
-            <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#DetallesDepGral">
-                <img src="~/Images/Detalles.png" title="Detalles" />
-            </button>
+                                 <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#DetallesDepGral@{@c.CLAVEDEPENDENCIAGENERAL}">
+                                     <img src="~/Images/Detalles.png" title="Detalles" />
+                                 </button>
 
-            <div id="DetallesDepGral" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div style="border-radius:10px;background-color: white; color:black; width:400px; height: 300px; vertical-align:middle;">
-                         @Html.Partial("DetallesDepGral", db.DepGral.Find(c.CLAVEDEPENDENCIAGENERAL.ToString()))
-                    </div>
-                </div>
-            </div>
+                                 <div id="DetallesDepGral@{@c.CLAVEDEPENDENCIAGENERAL}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                     <div class="modal-dialog">
+                                         <div style="border-radius:10px;background-color: white; color:black; width:400px; height: 300px; vertical-align:middle;">
+                                             @Html.Partial("DetallesDepGral", db.DepGral.Find(c.CLAVEDEPENDENCIAGENERAL.ToString()))
+                                         </div>
+                                     </div>
+                                 </div>
         </div>);
             
             columns.Add().Encoded(false).Sanitized(false)
         .RenderValueAs(c =>
        @<div>
-            <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#ModificarDepGral">
+
+            <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#ModificarDepGral@{@c.CLAVEDEPENDENCIAGENERAL}">
                 <img src="~/Images/Modificar.png" title="Modificar" />
             </button>
         
-            <div id="ModificarDepGral" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="ModificarDepGral@{@c.CLAVEDEPENDENCIAGENERAL}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div style="border-radius:10px;background-color: white; color:black; width:400px; height: auto; vertical-align:middle;">
                         @Html.Partial("ModificarDepGral", db.DepGral.Find(c.CLAVEDEPENDENCIAGENERAL.ToString()))
@@ -58,14 +61,14 @@
     columns.Add().Encoded(false).Sanitized(false)
        .RenderValueAs(c => 
        @<div>
-            <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#EliminarDepGral">
+            <button style="margin-right:-70px;background-color:rgba(0,0,0,0); border:none" type="button" data-toggle="modal" data-target="#EliminarDepGral@{@c.CLAVEDEPENDENCIAGENERAL}">
                 <img src="~/Images/Eliminar.png" title="Eliminar" />
             </button>
         
-            <div id="EliminarDepGral" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="EliminarDepGral@{@c.CLAVEDEPENDENCIAGENERAL}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div style="border-radius:10px;background-color: white; color:black; width:450px; height:calc(auto + 20px); vertical-align:middle;">          
-                        @Html.Partial("EliminarDepGral", db.DepGral.Find(c.CLAVEDEPENDENCIAGENERAL.ToString()))   
+                    <div style="border-radius:10px;background-color: white; color:black; width:450px; height:calc(auto + 20px); vertical-align:middle;">
+                        @Html.Partial("EliminarDepGral", db.DepGral.Find(c.CLAVEDEPENDENCIAGENERAL.ToString()))
                     </div>
                 </div>
             </div>
@@ -80,23 +83,4 @@
     }).Sortable().Filterable().WithMultipleFilters().WithPaging(10)
     </div>
 
-    <script>
-        function centerModal() {
-            $(this).css('display', 'block');
-            var $dialog = $(this).find(".modal-dialog");
-            var offset = ($(window).height() - $dialog.height()) / 2;
-            //Make sure you don't hide the top part of the modal w/ a negative margin if it's longer than the screen height, and keep the margin equal to the bottom margin of the modal
-            var bottomMargin = $dialog.css('marginBottom');
-            bottomMargin = parseInt(bottomMargin);
-            if (offset < bottomMargin) offset = bottomMargin;
-            $dialog.css("margin-top", offset);
-        }
-
-        $('.modal').on('show.bs.modal', centerModal);
-        $(window).on("resize", function () {
-            $('.modal:visible').each(centerModal);
-        });
-    </script>
-
-    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>

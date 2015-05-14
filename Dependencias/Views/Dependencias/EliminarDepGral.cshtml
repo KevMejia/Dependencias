@@ -1,8 +1,5 @@
 ﻿@model Dependencias.Models.DEPENDENCIASGENERALES
 
-@{
-    Layout=null;
-}
 <h2>Eliminar Dependencia General</h2>
 
 <h3>¿Estás seguro que quieres eliminar esto?</h3>
@@ -46,8 +43,8 @@
         </dt>
 
         <dd>
-            @{string fecha = Model.FECHACAPTURA.ToShortDateString();}
-            @Html.DisplayFor(model => fecha)        
+           @* @{string fecha = Model.FECHACAPTURA.ToShortDateString();}*@
+            @Html.DisplayFor(model => model.FECHACAPTURA)        
         </dd>
 
         <dt>
@@ -60,14 +57,13 @@
 
     </dl>
 
-
     @using (Html.BeginForm("EliminarDepGral", "Dependencias", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
         @Html.HiddenFor(model => model.CLAVEDEPENDENCIAGENERAL)
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar Departamento General" class="btn btn-danger" /> 
+            <input type="submit" value="Eliminar Dependencia General" class="btn btn-danger" /> 
         </div>
     }
 </div>

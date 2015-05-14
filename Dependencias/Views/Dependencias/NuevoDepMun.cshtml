@@ -1,13 +1,15 @@
-﻿@model Dependencias.Models.DEPENDENCIASMUNICIPIOS
-
-@{
-    ViewBag.Title = "Crear Dependencia Municipios";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+    DB2Conn db = new DB2Conn();
+    ViewData["DependenciasGral"] = db.DepGral.ToList();
+    ViewData["DependenciasAux"] = db.DepAux.ToList();
 }
+@using Dependencias.Models
+@model Dependencias.Models.DEPENDENCIASMUNICIPIOS
 
-<h2>@ViewBag.Title</h2>
+<h2>Nueva Dependencia Municipios</h2>
 
-@using (Html.BeginForm())
+
+@using (Html.BeginForm("NuevoDepMun", "Dependencias", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -15,15 +17,15 @@
         <hr />
         @Html.ValidationSummary(true)
 
-        @* @Html.HiddenFor(model => model.CLAVEDEPENDENCIA)*@
-        @Html.HiddenFor(model => model.ANIOOPERACION, new { @Value = DateTime.Now.Year })
+        @Html.HiddenFor(model => model.CLAVEDEPENDENCIA, new { @Value=1})
+        @Html.HiddenFor(model => model.ANIOOPERACION, new { @Value = 2015 })
 
         <div class="form-group">
             <label class="control-label col-md-2">Clave de Dependencia General</label>
             <div class="col-md-10">
                 @{
                     List<string> ListaDepGral = new List<string>();
-                    foreach (var item in ViewData["DepGral"] as List<Dependencias.Models.DEPENDENCIASGENERALES>)
+                    foreach (var item in ViewData["DependenciasGral"] as List<DEPENDENCIASGENERALES>)
                     {
                      ListaDepGral.Add(item.CLAVEDEPENDENCIAGENERAL);
                     }
@@ -38,7 +40,7 @@
             <div class="col-md-10">
                 @{
                     List<string> ListaDepAux = new List<string>();
-                    foreach (var item in ViewData["DepAux"] as List<Dependencias.Models.DEPENDENCIASAUXILIARES>)
+                    foreach (var item in ViewData["DependenciasAux"] as List<Dependencias.Models.DEPENDENCIASAUXILIARES>)
                     {
                         ListaDepAux.Add(item.CLAVEDEPENDENCIAAUXILIAR);
                     }
@@ -66,12 +68,3 @@
         </div>
     </div>
 }
-
-<div>
-    @* @Html.ActionLink("Regresar a los Registros", "Index") *@
-    <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>
-</div>
-@*
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }*@

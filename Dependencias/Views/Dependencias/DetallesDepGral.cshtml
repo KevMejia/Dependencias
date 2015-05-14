@@ -1,61 +1,56 @@
 ﻿@model Dependencias.Models.DEPENDENCIASGENERALES
 
 <h2>Detalles de la Dependencia General</h2>
-        <div>
-            <dl class="dl-horizontal">
-                <dt>
-                    Año de operación
-                </dt>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Año de operación
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.ANIOOPERACION)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.ANIOOPERACION)
+        </dd>
 
-                <dt>
-                    Clave Dependencia General
-                </dt>
+        <dt>
+            Clave Dependencia General
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.CLAVEDEPENDENCIAGENERAL)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.CLAVEDEPENDENCIAGENERAL)
+        </dd>
 
-                <dt>
-                    Nombre de la Dependencia
-                </dt>
+        <dt>
+            Nombre de la Dependencia General
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.NOMBREDEPENDENCIAGENERAL)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.NOMBREDEPENDENCIAGENERAL)
+        </dd>
 
-                <dt>
-                    Usuario que Captura
-                </dt>
+        <dt>
+            Usuario que Captura
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.USUARIOCAPTURA)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.USUARIOCAPTURA)
+        </dd>
 
-                <dt>
-                    Fecha de Captura
-                </dt>
+        <dt>
+            Fecha de Captura
+        </dt>
 
-                <dd>
-                    @{string fecha = Model.FECHACAPTURA.ToShortDateString();}
-                    @Html.DisplayFor(model => fecha)
-                </dd>
+        <dd>
+           @* @{string fecha = Model.FECHACAPTURA.ToShortDateString();}*@
+            @Html.DisplayFor(model => model.FECHACAPTURA)
+        </dd>
 
-                <dt>
-                    Status de Dependencias Generales
-                </dt>
+        <dt>
+            Status de Dependencias Generales
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.STATUSDEPENDENCIASGENERALES)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.STATUSDEPENDENCIASGENERALES)
+        </dd>
 
-            </dl>
-        </div>
-        <p>
-           @* @Html.ActionLink("Modificar Registro", "ModificarDepGral", new { id = Model.CLAVEDEPENDENCIAGENERAL }) |
-             @Html.ActionLink("Regresar a los Registros", "Index") 
-            <a href="javascript.void(0)" onclick="history.go(-1);"> Regresar</a>*@
-        </p>
+    </dl>
+</div>
